@@ -1,59 +1,11 @@
 <!DOCTYPE html>
 <html>
-
-	<!--Stylesheet CSS Page View-->
-	<style type="text/css">
-		*{
-			/*Reset Page*/
-			margin: 0px !important;
-			padding: 0px !important;
-		}
-		body{
-			/*Body responsive*/
-			height: 100%;
-			width: 100%;
-			overflow: hidden;
-		}
-		canvas{
-			/*Canvas responsive*/
-			width: 100%;
-			height: 100%;
-			position: fixed;
-			top: 0px;
-			left: 0px;
-			z-index: -1;
-		}
-
-		#div-wrap {
-			/* div used to overlay text on the screen with canvas */
-			position: relative;
-		}
-		#overlay {
-			/* section overlay in page */
-			max-width: 600px;
-			max-height: 600px;
-			position:absolute; 
-			top:20px; 
-			left:30px;
-			box-shadow: 20px 20px 10px;
-			display: grid;
-		}
-
-		.grid{
-			/* Grid layout */
-			max-width: 600px;
-			max-height: 600px;
-			margin: 0 auto;
-		}
-		.grid-template-columns-2{
-			/* Grid template */
-			grid-template-columns: 1fr 2fr;
-		}
-
-	</style>
-
 	<!--Html Page view-->
 	<head>
+		<!--Stylesheet CSS Page View-->
+		<link rel="stylesheet" href="Stylesheet/styles.css">
+		<!--Javascript Matrix Effect-->
+		<script src="js/index.js" async></script>
 		<title>Matrix</title>
 	</head>
 	<body>
@@ -61,72 +13,11 @@
 			<canvas id="canv" height="100%"></canvas>
 			<section id="overlay">
 				<div class="grid grid-template-columns-2">
-					<div class="item">PalavraTesteGrandeRespeita</div>
-					<div class="item">2</div>
+					<div class="item"></div>
+					<div class="item"></div>
 				</div>
 			</section>
 		</div>
 	</body>
-
-	<!--Javascript Matrix Effect-->
-	<script type="text/javascript">
-		/* Canvas select in html document */
-		const canvas = document.getElementById('canv');
-		const ctx = canvas.getContext('2d');
-
-		/* Canvas screen size */
-		const setUpCanvas = () => {
-			canvas.width = canvas.clientWidth;
-			canvas.height = canvas.clientHeight;
-		};
-
-		/* Draw matrix Effect */
-		const drawMatrix = () => {
-			const min = Math.min(canvas.height, canvas.width);
-			const w = canvas.width;
-			const h = canvas.height;
-			const cols = Math.floor(w / 20) + 1;
-			const ypos = Array(cols).fill(0);
-			ctx.fillStyle = '#000';
-			ctx.fillRect(0, 0, w, h);
-
-			/* Animation Matrix canvas */
-			return setInterval (() => {
-				ctx.fillStyle = '#0001';
-				ctx.fillRect(0, 0, w, h);
-				
-				ctx.fillStyle = '#0f0';
-				ctx.font = '15pt monospace';
-				ypos.forEach((y, ind) => {
-					const text = String.fromCharCode(Math.random() * 128);
-					const x = ind * 20;
-					ctx.fillText(text, x, y);
-					if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
-					else ypos[ind] = y + 20;
-				});
-			}, 80);
-		}
-
-		/* Reset animation matrix effect with resize screen */
-		const reset = (animationInterval) => {
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-			clearInterval(animationInterval);
-
-			setUpCanvas();
-			return drawMatrix();
-		}
-
-		/* get screen size */
-		setUpCanvas();
-
-		/* Animation interval with screen matrix effect */
-		let animationInterval = drawMatrix();
-		setInterval(80);
-
-		/* Event resize, start reset function */
-		window.addEventListener('resize', () =>{
-			animationInterval = reset(animationInterval);
-		});
-	</script>
+	
 </html>

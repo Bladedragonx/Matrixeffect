@@ -1,0 +1,46 @@
+*{
+    /*Reset Page*/
+    margin: 0px !important;
+    padding: 0px !important;
+}
+body{
+    /*Body responsive*/
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+canvas{
+    /*Canvas responsive*/
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+}
+
+#div-wrap {
+    /* div used to overlay text on the screen with canvas */
+    position: relative;
+}
+#overlay {
+    /* section overlay in page */
+    max-width: 600px;
+    max-height: 600px;
+    position:absolute; 
+    top:20px; 
+    left:30px;
+    box-shadow: 20px 20px 10px;
+    display: grid;
+}
+
+.grid{
+    /* Grid layout */
+    max-width: 600px;
+    max-height: 600px;
+    margin: 0 auto;
+}
+.grid-template-columns-2{
+    /* Grid template */
+    grid-template-columns: 1fr 2fr;
+}
